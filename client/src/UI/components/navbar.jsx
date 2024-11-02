@@ -50,7 +50,9 @@ const Navbar = () => {
                 Contact
               </li>
               <li className="nav-item">
-                <button className="btn btn-gr p-2 w-40">Register</button>
+                <Link to={'/sign-up'} className="btn btn-gr p-2 w-40">
+                  Register
+                </Link>
               </li>
             </ul>
           </div>

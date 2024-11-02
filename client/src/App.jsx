@@ -17,6 +17,8 @@ import Alerts from './Admin/pages/UiElements/Alerts';
 import Buttons from './Admin/pages/UiElements/Buttons';
 import DefaultLayout from './Admin/layout/DefaultLayout';
 import LandingPage from './UI/pages/landingPage';
+import RegisterPage from './UI/pages/registerPage';
+import LoginPage from './UI/pages/loginPage';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -42,6 +44,25 @@ function App() {
             <>
               <PageTitle title="ALL Stars" />
               <LandingPage />
+            </>
+          }
+        />
+        <Route
+          path="/sign-up"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <RegisterPage />
+            </>
+          }
+        />
+
+        <Route
+          path="/sign-in"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <LoginPage />
             </>
           }
         />

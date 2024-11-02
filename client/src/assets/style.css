@@ -16155,19 +16155,8 @@ form.form.checkout-form label {
   color: #030523;
   font-size: 17px;
 }
-form.form.checkout-form select {
-  padding: 17px 10px;
-  display: block !important;
-  width: 100%;
-  border: 1px solid #e8e8e8;
-  color: #696969;
-  background-color: #fff;
-}
+
 form.form.checkout-form input,
-form.form.checkout-form select {
-  font-size: 16px;
-  margin-bottom: 30px;
-}
 form.form.checkout-form input[type='checkbox'] {
   width: auto;
 }
