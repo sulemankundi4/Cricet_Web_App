@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -36,25 +40,174 @@ const RegisterPage = () => {
     cnicBack: null,
     feeSubmission: null,
     picture: null,
-    termsAccepted: false,
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
     if (type === 'checkbox') {
-      setFormData({ ...formData, [name]: checked });
+      if (formData.cricketExpertise === 'other') {
+        // Uncheck all other checkboxes
+        setFormData({
+          ...formData,
+          coach: false,
+          analyst: false,
+          trainer: false,
+          physio: false,
+          masseur: false,
+          sportsPhysician: false,
+          commentator: false,
+          expertDressDesigner: false,
+          [name]: checked,
+        });
+      } else {
+        setFormData({ ...formData, [name]: checked });
+      }
     } else if (type === 'file') {
-      setFormData({ ...formData, [name]: files[0] });
+      const file = files[0];
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+      if (file && !allowedTypes.includes(file.type)) {
+        toast.error('Only JPG, JPEG, and PNG files are allowed.');
+        return;
+      }
+      setFormData({ ...formData, [name]: file });
     } else {
       setFormData({ ...formData, [name]: value });
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission logic here
+  const validateForm = () => {
+    const requiredFields = [
+      'firstName',
+      'lastName',
+      'fathersName',
+      'cnicNo',
+      'presentAddress',
+      'permanentAddress',
+      'dateOfBirth',
+      'gender',
+      'contactNo',
+      'email',
+      'contactType',
+      'cricketCareer',
+      'majorAchievements',
+      'idealCricketer',
+      'dreamGround',
+      'cnicFront',
+      'cnicBack',
+      'feeSubmission',
+      'picture',
+      'cricketExpertise',
+    ];
+
+    for (const field of requiredFields) {
+      if (!formData[field]) {
+        toast.error(
+          `Please provide ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`,
+        );
+        return false;
+      }
+    }
+
+    if (formData.cnicNo.length !== 13) {
+      toast.error('CNIC No must be 13 digits');
+      return false;
+    }
+
+    if (
+      formData.cricketExpertise !== '' &&
+      formData.cricketExpertise === 'batsman' &&
+      !formData.batsmanHand
+    ) {
+      toast.error('Please provide batsman hand');
+      return false;
+    }
+
+    if (
+      formData.cricketExpertise !== '' &&
+      formData.cricketExpertise === 'bowler' &&
+      (!formData.bowlerHand || !formData.bowlerType)
+    ) {
+      toast.error('Please provide bowler hand and type');
+      return false;
+    }
+
+    if (
+      formData.cricketExpertise !== '' &&
+      formData.cricketExpertise === 'other' &&
+      !formData.coach &&
+      !formData.analyst &&
+      !formData.trainer &&
+      !formData.physio &&
+      !formData.masseur &&
+      !formData.sportsPhysician &&
+      !formData.commentator &&
+      !formData.expertDressDesigner
+    ) {
+      toast.error('Please select at least one role');
+      return false;
+    }
+
+    return true;
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    const data = new FormData();
+    for (const key in formData) {
+      if (formData[key] !== null) {
+        data.append(key, formData[key]);
+      }
+    }
+
+    try {
+      let response;
+      if (formData.cricketExpertise === 'batsman') {
+        response = await axios.post(
+          'http://localhost:5000/api/cricket/batsman/new',
+          data,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          },
+        );
+      } else if (formData.cricketExpertise === 'bowler') {
+        response = await axios.post(
+          'http://localhost:5000/api/cricket/bowler/new',
+          data,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          },
+        );
+      } else {
+        response = await axios.post(
+          'http://localhost:5000/api/cricket/other/new',
+          data,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          },
+        );
+      }
+
+      toast.success(
+        'Registration successful! Wait for the admin to approve your registeration please!',
+      );
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+      toast.error('Registration failed');
+      // Handle error (e.g., show an error message)
+    }
+  };
   return (
     <section className="register-page">
       <div className="container mx-auto px-4 py-10">
@@ -87,7 +240,7 @@ const RegisterPage = () => {
                 className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
               <input
-                type="text"
+                type="number"
                 name="cnicNo"
                 placeholder="CNIC No"
                 value={formData.cnicNo}
@@ -484,23 +637,6 @@ const RegisterPage = () => {
               </div>
             </div>
 
-            <div className="form-check mt-6">
-              <input
-                className="h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                type="checkbox"
-                name="termsAccepted"
-                checked={formData.termsAccepted}
-                onChange={handleChange}
-                id="flexCheckChecked"
-              />
-              <label
-                className="form-check-label text-gray-600"
-                htmlFor="flexCheckChecked"
-              >
-                I agree to the Terms and Conditions governing the use of Fuzio
-                Terms
-              </label>
-            </div>
             <button className="btn btn-primary w-full mt-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
               Register
             </button>

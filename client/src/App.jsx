@@ -19,7 +19,7 @@ import DefaultLayout from './Admin/layout/DefaultLayout';
 import LandingPage from './UI/pages/landingPage';
 import RegisterPage from './UI/pages/registerPage';
 import LoginPage from './UI/pages/loginPage';
-
+import { Toaster } from 'react-hot-toast';
 function App() {
   const [loading, setLoading] = useState(true);
   const { pathname } = useLocation();
@@ -175,6 +175,19 @@ function App() {
           }
         />
       </Routes>
+      <Toaster
+        position="top-center"
+        containerStyle={{}}
+        toastOptions={{
+          // Define default options
+          className: '',
+          duration: 3000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+        }}
+      />
     </>
   );
 }

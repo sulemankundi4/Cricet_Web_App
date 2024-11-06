@@ -1,9 +1,8 @@
-const Batsman = require("../models/Batsman");
 const Bowler = require("../models/bowler");
-const Other = require("../models/other");
 const multer = require("multer");
 const path = require("path");
-const { errorHandler, tryCatch } = require("../utils/features");
+const { tryCatch } = require("../middlewares/error");
+
 // Set up multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -23,10 +22,10 @@ const uploadFiles = upload.fields([
   { name: "picture", maxCount: 1 },
 ]);
 
-const createBatsman = tryCatch(async (req, res, next) => {
-  const { firstName, lastName, fathersName, cnicNo, presentAddress, permanentAddress, dateOfBirth, gender, contactNo, email, cricketExpertise, batsmanHand, contactType, cricketCareer, firstClassCricketer, contract, majorAchievements, idealCricketer, dreamGround } = req.body;
+const createBowler = tryCatch(async (req, res, next) => {
+  const { firstName, lastName, fathersName, cnicNo, presentAddress, permanentAddress, dateOfBirth, gender, contactNo, email, cricketExpertise, bowlerHand, bowlerType, contactType, cricketCareer, firstClassCricketer, contract, majorAchievements, idealCricketer, dreamGround } = req.body;
 
-  if (!firstName || !lastName || !fathersName || !cnicNo || !presentAddress || !permanentAddress || !dateOfBirth || !contactNo || !email || !cricketExpertise || !batsmanHand || !contactType || !cricketCareer || !firstClassCricketer || !contract || !majorAchievements || !idealCricketer || !dreamGround) {
+  if (!firstName || !lastName || !fathersName || !cnicNo || !presentAddress || !permanentAddress || !dateOfBirth || !contactNo || !email || !cricketExpertise || !bowlerHand || !bowlerType || !contactType || !cricketCareer || !firstClassCricketer || !contract || !majorAchievements || !idealCricketer || !dreamGround) {
     return next(new errorHandler("Please provide all the required fields", 400));
   }
 
@@ -39,7 +38,7 @@ const createBatsman = tryCatch(async (req, res, next) => {
     return next(new errorHandler("Please provide all the required files", 400));
   }
 
-  const batsman = new Batsman({
+  const bowler = new Bowler({
     firstName,
     lastName,
     fathersName,
@@ -51,7 +50,8 @@ const createBatsman = tryCatch(async (req, res, next) => {
     contactNo,
     email,
     cricketExpertise,
-    batsmanHand,
+    bowlerHand,
+    bowlerType,
     contactType,
     cricketCareer,
     firstClassCricketer,
@@ -65,11 +65,11 @@ const createBatsman = tryCatch(async (req, res, next) => {
     picture,
   });
 
-  await batsman.save();
-  res.status(201).json({ success: true, data: batsman });
+  await bowler.save();
+  res.status(201).json({ success: true, data: bowler });
 });
 
 module.exports = {
-  createBatsman,
-  uploadFiles,
+  createBowler,
+  uploadFiles, // or the correct export name
 };
