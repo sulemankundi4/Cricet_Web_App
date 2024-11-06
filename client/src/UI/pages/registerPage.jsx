@@ -163,6 +163,7 @@ const RegisterPage = () => {
                   <option value="">Select Expertise</option>
                   <option value="batsman">Batsman</option>
                   <option value="bowler">Bowler</option>
+                  <option value="other">Other</option>
                 </select>
               </div>
 
@@ -218,116 +219,152 @@ const RegisterPage = () => {
               )}
 
               {/* Additional roles and Contact Type selection */}
+              {formData.cricketExpertise === 'other' && (
+                <>
+                  <div className="mt-4">
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="coach"
+                        id="coach"
+                        checked={formData.coach}
+                        onChange={handleChange}
+                        className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <label
+                        for="coach"
+                        className="form-check-label text-gray-600"
+                      >
+                        Coach
+                      </label>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="analyst"
+                        checked={formData.analyst}
+                        onChange={handleChange}
+                        id="analyst"
+                        className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <label
+                        for="analyst"
+                        className="form-check-label text-gray-600"
+                      >
+                        Analyst
+                      </label>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="trainer"
+                        checked={formData.trainer}
+                        onChange={handleChange}
+                        id="trainer"
+                        className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <label
+                        for="trainer"
+                        className="form-check-label text-gray-600"
+                      >
+                        Trainer
+                      </label>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="physio"
+                        id="physio"
+                        checked={formData.physio}
+                        onChange={handleChange}
+                        className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <label
+                        for="physio"
+                        className="form-check-label text-gray-600"
+                      >
+                        Physio
+                      </label>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="masseur"
+                        id="masseur"
+                        checked={formData.masseur}
+                        onChange={handleChange}
+                        className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <label
+                        for="masseur"
+                        className="form-check-label text-gray-600"
+                      >
+                        Masseur
+                      </label>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="sportsPhysician"
+                        id="sportsPhysician"
+                        checked={formData.sportsPhysician}
+                        onChange={handleChange}
+                        className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <label
+                        for="sportsPhysician"
+                        className="form-check-label text-gray-600"
+                      >
+                        Sports Physician
+                      </label>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="commentator"
+                        checked={formData.commentator}
+                        onChange={handleChange}
+                        id="commentator"
+                        className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <label
+                        for="commentator"
+                        className="form-check-label text-gray-600"
+                      >
+                        Commentator
+                      </label>
+                    </div>
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        name="expertDressDesigner"
+                        id="expertDressDesigner"
+                        checked={formData.expertDressDesigner}
+                        onChange={handleChange}
+                        className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                      />
+                      <label
+                        for="expertDressDesigner"
+                        className="form-check-label text-gray-600"
+                      >
+                        Expert Dress Designer
+                      </label>
+                    </div>
+                  </div>
+                </>
+              )}
               <div className="mt-4">
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="coach"
-                    checked={formData.coach}
-                    onChange={handleChange}
-                    className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label className="form-check-label text-gray-600">
-                    Coach
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="analyst"
-                    checked={formData.analyst}
-                    onChange={handleChange}
-                    className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label className="form-check-label text-gray-600">
-                    Analyst
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="trainer"
-                    checked={formData.trainer}
-                    onChange={handleChange}
-                    className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label className="form-check-label text-gray-600">
-                    Trainer
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="physio"
-                    checked={formData.physio}
-                    onChange={handleChange}
-                    className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label className="form-check-label text-gray-600">
-                    Physio
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="masseur"
-                    checked={formData.masseur}
-                    onChange={handleChange}
-                    className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label className="form-check-label text-gray-600">
-                    Masseur
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="sportsPhysician"
-                    checked={formData.sportsPhysician}
-                    onChange={handleChange}
-                    className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label className="form-check-label text-gray-600">
-                    Sports Physician
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="commentator"
-                    checked={formData.commentator}
-                    onChange={handleChange}
-                    className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label className="form-check-label text-gray-600">
-                    Commentator
-                  </label>
-                </div>
-                <div className="flex items-center">
-                  <input
-                    type="checkbox"
-                    name="expertDressDesigner"
-                    checked={formData.expertDressDesigner}
-                    onChange={handleChange}
-                    className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                  />
-                  <label className="form-check-label text-gray-600">
-                    Expert Dress Designer
-                  </label>
-                </div>
-                <div className="mt-4">
-                  <label className="block text-gray-700">Contact Type:</label>
-                  <select
-                    name="contactType"
-                    value={formData.contactType}
-                    onChange={handleChange}
-                    className="border border-blue-500 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  >
-                    <option value="">Select Type</option>
-                    <option value="1year">1 Year</option>
-                    <option value="3year">3 Year</option>
-                  </select>
-                </div>
+                <label className="block text-gray-700">Contact Type:</label>
+                <select
+                  name="contactType"
+                  value={formData.contactType}
+                  onChange={handleChange}
+                  className="border border-blue-500 text-gray-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                >
+                  <option value="">Select Type</option>
+                  <option value="1year">1 Year</option>
+                  <option value="3year">3 Year</option>
+                </select>
               </div>
             </div>
 
@@ -349,11 +386,15 @@ const RegisterPage = () => {
                 <input
                   type="checkbox"
                   name="firstClassCricketer"
+                  id="firstClassCricketer"
                   checked={formData.firstClassCricketer}
                   onChange={handleChange}
                   className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
-                <label className="form-check-label text-gray-600">
+                <label
+                  for="firstClassCricketer"
+                  className="form-check-label text-gray-600"
+                >
                   Are you 1st Class Cricketer?
                 </label>
               </div>
@@ -363,9 +404,13 @@ const RegisterPage = () => {
                   name="contract"
                   checked={formData.contract}
                   onChange={handleChange}
+                  id="contract"
                   className="form-check-input mr-2 h-5 w-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                 />
-                <label className="form-check-label text-gray-600">
+                <label
+                  for="contract"
+                  className="form-check-label text-gray-600"
+                >
                   Have you any contract?
                 </label>
               </div>
