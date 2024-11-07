@@ -69,7 +69,59 @@ const createBatsman = tryCatch(async (req, res, next) => {
   res.status(201).json({ success: true, data: batsman });
 });
 
+const getStats = tryCatch(async (req, res, next) => {
+  const totalBatsmen = await Batsman.countDocuments();
+  const verifiedBatsmen = await Batsman.countDocuments({ accountStatus: true });
+
+  const totalBowlers = await Bowler.countDocuments();
+  const verifiedBowlers = await Bowler.countDocuments({ accountStatus: true });
+
+  const totalOthers = await Other.countDocuments();
+  const verifiedOthers = await Other.countDocuments({ accountStatus: true });
+
+  res.status(200).json({
+    success: true,
+    data: {
+      totalBatsmen,
+      verifiedBatsmen,
+      totalBowlers,
+      verifiedBowlers,
+      totalOthers,
+      verifiedOthers,
+    },
+  });
+});
+
+const getAllBatsmans = tryCatch(async (req, res, next) => {
+  const batsmen = await Batsman.find();
+  res.status(200).json({ success: true, data: batsmen });
+});
+
+const getBatsmanDetails = tryCatch(async (req, res, next) => {
+  const { id } = req.params;
+  const batsman = await Batsman.findById(id);
+  if (!batsman) {
+    return next(new errorHandler("Batsman not found", 404));
+  }
+  res.status(200).json({ success: true, data: batsman });
+});
+
+const verifyBatsman = tryCatch(async (req, res, next) => {
+  const { id } = req.params;
+
+  const batsman = await Batsman.findByIdAndUpdate(id, { accountStatus: true }, { new: true });
+
+  if (!batsman) {
+    return next(new errorHandler("Batsman not found", 404));
+  }
+  res.status(200).json({ success: true, data: batsman });
+});
+
 module.exports = {
   createBatsman,
   uploadFiles,
+  getStats,
+  getAllBatsmans,
+  getBatsmanDetails,
+  verifyBatsman,
 };

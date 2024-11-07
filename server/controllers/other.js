@@ -75,7 +75,34 @@ const createOther = tryCatch(async (req, res, next) => {
   res.status(201).json({ success: true, data: other });
 });
 
+const verifyOther = tryCatch(async (req, res, next) => {
+  const { id } = req.params;
+  const other = await Other.findByIdAndUpdate(id, { accountStatus: true }, { new: true });
+  if (!other) {
+    return next(new errorHandler("Other not found", 404));
+  }
+  res.status(200).json({ success: true, data: other });
+});
+
+const getAllOthers = tryCatch(async (req, res, next) => {
+  const others = await Other.find();
+  res.status(200).json({ success: true, data: others });
+});
+
+const getOthersDetails = tryCatch(async (req, res, next) => {
+  const { id } = req.params;
+  const others = await Other.findById(id);
+
+  if (!others) {
+    return next(new errorHandler("others not found", 404));
+  }
+  res.status(200).json({ success: true, data: others });
+});
+
 module.exports = {
   createOther,
-  uploadFiles, // or the correct export name
+  uploadFiles,
+  getAllOthers,
+  verifyOther,
+  getOthersDetails,
 };

@@ -5,24 +5,34 @@ import Loader from './Admin/common/Loader';
 import PageTitle from './Admin/components/PageTitle';
 import SignIn from './Admin/pages/Authentication/SignIn';
 import SignUp from './Admin/pages/Authentication/SignUp';
-import Calendar from './Admin/pages/Calendar';
-import Chart from './Admin/pages/Chart';
-import ECommerce from './Admin/pages/Dashboard/ECommerce';
-import FormElements from './Admin/pages/Form/FormElements';
-import FormLayout from './Admin/pages/Form/FormLayout';
-import Profile from './Admin/pages/Profile';
-import Settings from './Admin/pages/Settings';
+import Dashboard from './Admin/pages/Dashboard/Dashboard';
 import Tables from './Admin/pages/Tables';
-import Alerts from './Admin/pages/UiElements/Alerts';
-import Buttons from './Admin/pages/UiElements/Buttons';
 import DefaultLayout from './Admin/layout/DefaultLayout';
 import LandingPage from './UI/pages/landingPage';
 import RegisterPage from './UI/pages/registerPage';
 import LoginPage from './UI/pages/loginPage';
 import { Toaster } from 'react-hot-toast';
+import AllBatsman from './Admin/pages/AllBatsman';
+import AllBowler from './Admin/pages/AllBowler';
+import AllOther from './Admin/pages/AllOthers';
+import BatsmanDetails from './Admin/pages/BatsmanDetails';
+import BowlerDetails from './Admin/pages/BowlerDetails';
+import OtherDetails from './Admin/pages/OtherDetails';
+
 function App() {
   const [loading, setLoading] = useState(true);
   const { pathname } = useLocation();
+
+  // Conditionally load the CSS based on the pathname
+  useEffect(() => {
+    if (
+      pathname === '/' ||
+      pathname === '/sign-up' ||
+      pathname === '/sign-in'
+    ) {
+      import('../src/assets/style.css');
+    }
+  }, [pathname]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -56,7 +66,6 @@ function App() {
             </>
           }
         />
-
         <Route
           path="/sign-in"
           element={
@@ -71,106 +80,62 @@ function App() {
           element={
             <>
               <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <ECommerce />
+              <Dashboard />
             </>
           }
         />
         <Route
-          path="/calendar"
+          path="/all-batsman"
           element={
             <>
-              <PageTitle title="Calendar | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Calendar />
+              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <AllBatsman />
             </>
           }
         />
         <Route
-          path="/profile"
+          path="/all-bowler"
           element={
             <>
-              <PageTitle title="Profile | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Profile />
+              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <AllBowler />
             </>
           }
         />
         <Route
-          path="/forms/form-elements"
+          path="/all-other"
           element={
             <>
-              <PageTitle title="Form Elements | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <FormElements />
+              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <AllOther />
+            </>
+          }
+        />
+
+        <Route
+          path="/batsman/:id"
+          element={
+            <>
+              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <BatsmanDetails />
             </>
           }
         />
         <Route
-          path="/forms/form-layout"
+          path="/bowler/:id"
           element={
             <>
-              <PageTitle title="Form Layout | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <FormLayout />
+              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <BowlerDetails />
             </>
           }
         />
         <Route
-          path="/tables"
+          path="/other/:id"
           element={
             <>
-              <PageTitle title="Tables | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Tables />
-            </>
-          }
-        />
-        <Route
-          path="/settings"
-          element={
-            <>
-              <PageTitle title="Settings | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Settings />
-            </>
-          }
-        />
-        <Route
-          path="/chart"
-          element={
-            <>
-              <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Chart />
-            </>
-          }
-        />
-        <Route
-          path="/ui/alerts"
-          element={
-            <>
-              <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Alerts />
-            </>
-          }
-        />
-        <Route
-          path="/ui/buttons"
-          element={
-            <>
-              <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <Buttons />
-            </>
-          }
-        />
-        <Route
-          path="/auth/signin"
-          element={
-            <>
-              <PageTitle title="Signin | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <SignIn />
-            </>
-          }
-        />
-        <Route
-          path="/auth/signup"
-          element={
-            <>
-              <PageTitle title="Signup | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <SignUp />
+              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <OtherDetails />
             </>
           }
         />

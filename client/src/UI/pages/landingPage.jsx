@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../assets/style.css';
 import Navbar from '../components/navbar';
 import Hero from '../components/hero';
 import CompanySlider from '../components/companySlider';

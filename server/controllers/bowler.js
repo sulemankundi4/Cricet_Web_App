@@ -69,7 +69,33 @@ const createBowler = tryCatch(async (req, res, next) => {
   res.status(201).json({ success: true, data: bowler });
 });
 
+const getAllBowlers = tryCatch(async (req, res, next) => {
+  const bowlers = await Bowler.find();
+  res.status(200).json({ success: true, data: bowlers });
+});
+
+const verifyBowler = tryCatch(async (req, res, next) => {
+  const { id } = req.params;
+  const bowler = await Bowler.findByIdAndUpdate(id, { accountStatus: true }, { new: true });
+  if (!bowler) {
+    return next(new errorHandler("Bowler not found", 404));
+  }
+  res.status(200).json({ success: true, data: bowler });
+});
+
+const getBowlerDetails = tryCatch(async (req, res, next) => {
+  const { id } = req.params;
+  const bowler = await Bowler.findById(id);
+  if (!bowler) {
+    return next(new errorHandler("bowler not found", 404));
+  }
+  res.status(200).json({ success: true, data: bowler });
+});
+
 module.exports = {
   createBowler,
   uploadFiles, // or the correct export name
+  verifyBowler,
+  getAllBowlers,
+  getBowlerDetails,
 };

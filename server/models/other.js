@@ -31,6 +31,7 @@ const otherSchema = new mongoose.Schema({
   cnicBack: { type: String, required: true },
   feeSubmission: { type: String, required: true },
   picture: { type: String, required: true },
+  accountStatus: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("Other", otherSchema);
