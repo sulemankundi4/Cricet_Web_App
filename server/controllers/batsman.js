@@ -140,7 +140,7 @@ const adminLogin = tryCatch(async (req, res, next) => {
     httpOnly: false,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
-    maxAge: 3600000, // 1 hour
+    maxAge: 360000000, // 1 hour
     path: "/", // Ensure the path is set correctly
   });
 

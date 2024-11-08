@@ -17,6 +17,11 @@ import BowlerDetails from './Admin/pages/BowlerDetails';
 import OtherDetails from './Admin/pages/OtherDetails';
 import ProtectedRoute from './UI/components/ProtectedRoute';
 import { isAuthenticated } from './UI/utils/Auth.js';
+import AllPlayers from './UI/pages/allPlayers';
+
+import BatsmanDetailsUI from './UI/pages/batsmanDetails';
+import BowlerDetailsUI from './UI/pages/bowlerDetails';
+import OtherDetailsUI from './UI/pages/otherDetails';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -94,6 +99,47 @@ function App() {
           }
         />
         <Route
+          path="/all-players"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <AllPlayers />
+            </>
+          }
+        />
+
+        <Route
+          path="/batsman/ui/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <BatsmanDetailsUI />
+            </>
+          }
+        />
+
+        <Route
+          path="/bowler/ui/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <BowlerDetailsUI />
+            </>
+          }
+        />
+
+        <Route
+          path="/other/ui/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <OtherDetailsUI />
+            </>
+          }
+        />
+
+        {/* Add the new route */}
+        <Route
           path="/sign-in"
           element={
             <>
@@ -145,7 +191,6 @@ function App() {
             </>
           }
         />
-
         <Route
           path="/batsman/:id"
           element={

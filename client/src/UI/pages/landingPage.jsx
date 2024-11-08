@@ -11,8 +11,9 @@ import Gallery from '../components/gallery';
 import Footer from '../components/footer';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import axios from 'axios';
 const LandingPage = () => {
-  const [batsmen, setBatsmen] = useState([]);
+  const [batsman, setBatsman] = useState([]);
 
   useEffect(() => {
     const fetchBatsmen = async () => {
@@ -20,8 +21,12 @@ const LandingPage = () => {
         const response = await axios.get(
           'http://localhost:5000/api/cricket/batsman/all',
         );
+        console.log(response);
         if (response.data.success) {
-          setBatsmen(response.data.data.slice(0, 3)); // Get the first three batsmen
+          const verifiedBatsmen = response.data.data.filter(
+            (batsman) => batsman.accountStatus === true,
+          );
+          setBatsman(verifiedBatsmen.slice(0, 3)); // Get the first three verified batsmen
         } else {
           console.error('Error fetching batsmen:', response.data.message);
         }
@@ -39,7 +44,7 @@ const LandingPage = () => {
         <Hero />
         <CompanySlider />
         <About />
-        <PlayerProfile />
+        <PlayerProfile batsman={batsman} />
 
         <div
           className="video-sec jarallax bg-cover bg-center flex items-center justify-center mt-20"

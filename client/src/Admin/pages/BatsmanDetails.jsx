@@ -133,6 +133,87 @@ const BatsmanDetails = () => {
             </button>
           )}
         </div>
+
+        {/* Media Files Section */}
+        <div className="bg-white p-6 rounded-lg shadow-lg dark:border-strokedark dark:bg-boxdark mt-10">
+          <h3 className="text-xl font-bold mb-4 dark:text-white">
+            Media Files
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {batsman.cnicFront && (
+              <div className="media-item">
+                <h4 className="text-lg font-semibold dark:text-white">
+                  CNIC Front
+                </h4>
+                <a
+                  href={`http://localhost:5000/${batsman.cnicFront}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-80 h-40 rounded-lg border-2 shadow-lg object-cover"
+                    src={`http://localhost:5000/${batsman.cnicFront}`}
+                    alt="CNIC Front"
+                  />
+                </a>
+              </div>
+            )}
+            {batsman.cnicBack && (
+              <div className="media-item">
+                <h4 className="text-lg font-semibold dark:text-white">
+                  CNIC Back
+                </h4>
+                <a
+                  href={`http://localhost:5000/${batsman.cnicBack}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-80 h-40 rounded-lg border-2 shadow-lg object-cover"
+                    src={`http://localhost:5000/${batsman.cnicBack}`}
+                    alt="CNIC Back"
+                  />
+                </a>
+              </div>
+            )}
+            {batsman.picture && (
+              <div className="media-item">
+                <h4 className="text-lg font-semibold dark:text-white">
+                  Profile Picture
+                </h4>
+                <a
+                  href={`http://localhost:5000/${batsman.picture}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-80 h-40 rounded-lg border-2 shadow-lg object-cover"
+                    src={`http://localhost:5000/${batsman.picture}`}
+                    alt="Profile Picture"
+                  />
+                </a>
+              </div>
+            )}
+            {batsman.feeSubmission && (
+              <div className="media-item">
+                <h4 className="text-lg font-semibold dark:text-white">
+                  Fee Submission
+                </h4>
+                <a
+                  href={`http://localhost:5000/${batsman.feeSubmission}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    className="w-80 h-40 rounded-lg border-2 shadow-lg object-cover"
+                    src={`http://localhost:5000/${batsman.feeSubmission}`}
+                    alt="Fee Submission"
+                  />
+                </a>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </DefaultLayout>
   );

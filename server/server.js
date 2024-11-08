@@ -21,6 +21,7 @@ const corsOptions = {
   credentials: true, // this allows the cookie to be sent with the request
 };
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(cors(corsOptions));
 
 config({
@@ -29,7 +30,6 @@ config({
 
 connectDB();
 
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/api/cricket", cricketRoutes);
 
 const port = process.env.PORT || 5000;
