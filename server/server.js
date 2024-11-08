@@ -4,6 +4,7 @@ const cors = require("cors");
 const { connectDB } = require("./utils/features");
 const { config } = require("dotenv");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 const { errorMiddleware } = require("./middlewares/error");
 const cricketRoutes = require("./routes/route");
@@ -11,6 +12,8 @@ const cricketRoutes = require("./routes/route");
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
+
 app.use(morgan("dev"));
 
 const corsOptions = {

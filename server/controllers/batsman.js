@@ -4,6 +4,8 @@ const Other = require("../models/other");
 const multer = require("multer");
 const path = require("path");
 const { errorHandler, tryCatch } = require("../utils/features");
+const jwt = require("jsonwebtoken");
+
 // Set up multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -117,6 +119,34 @@ const verifyBatsman = tryCatch(async (req, res, next) => {
   res.status(200).json({ success: true, data: batsman });
 });
 
+const adminLogin = tryCatch(async (req, res, next) => {
+  const { email, password } = req.body;
+
+  // Hardcoded admin credentials
+  const adminEmail = "admin@gmail.com";
+  const adminPassword = "123456789";
+
+  if (email !== adminEmail || password !== adminPassword) {
+    return res.status(401).json({ success: false, message: "Invalid credentials" });
+  }
+
+  // Generate JWT token
+  const token = jwt.sign({ email: adminEmail }, process.env.JWT_SECRET, {
+    expiresIn: "24h",
+  });
+
+  // Send token as a cookie
+  res.cookie("token", token, {
+    httpOnly: false,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+    maxAge: 3600000, // 1 hour
+    path: "/", // Ensure the path is set correctly
+  });
+
+  res.status(200).json({ success: true, message: "Admin logged in successfully" });
+});
+
 module.exports = {
   createBatsman,
   uploadFiles,
@@ -124,4 +154,5 @@ module.exports = {
   getAllBatsmans,
   getBatsmanDetails,
   verifyBatsman,
+  adminLogin,
 };

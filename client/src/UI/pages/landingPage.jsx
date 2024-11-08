@@ -9,7 +9,29 @@ import bgImg from '../../assets/images/cricket-video.jpg';
 import { FaPhone } from 'react-icons/fa6';
 import Gallery from '../components/gallery';
 import Footer from '../components/footer';
+import { useEffect } from 'react';
+import { useState } from 'react';
 const LandingPage = () => {
+  const [batsmen, setBatsmen] = useState([]);
+
+  useEffect(() => {
+    const fetchBatsmen = async () => {
+      try {
+        const response = await axios.get(
+          'http://localhost:5000/api/cricket/batsman/all',
+        );
+        if (response.data.success) {
+          setBatsmen(response.data.data.slice(0, 3)); // Get the first three batsmen
+        } else {
+          console.error('Error fetching batsmen:', response.data.message);
+        }
+      } catch (error) {
+        console.error('Error fetching batsmen:', error);
+      }
+    };
+
+    fetchBatsmen();
+  }, []);
   return (
     <>
       <section className="bg-white">

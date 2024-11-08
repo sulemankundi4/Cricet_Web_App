@@ -1,6 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        'http://localhost:5000/api/cricket/admin/login',
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        },
+      );
+
+      if (response.data.success) {
+        toast.success('Logged in successfully');
+        navigate('/'); // Redirect to admin dashboard
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  };
+
   return (
     <section className="account-sec py-12 bg-gray-100">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,11 +46,13 @@ const LoginPage = () => {
               </p>
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <form action="#">
+              <form onSubmit={handleSubmit}>
                 <div className="form-group mb-6">
                   <input
                     type="email"
                     placeholder="Email*"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -26,23 +61,11 @@ const LoginPage = () => {
                   <input
                     type="password"
                     placeholder="Password*"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     required
                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                </div>
-                <div className="form-check mb-6">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    value=""
-                    id="rememberMe"
-                  />
-                  <label
-                    className="form-check-label text-gray-600"
-                    htmlFor="rememberMe"
-                  >
-                    Remember Me
-                  </label>
                 </div>
                 <button className="btn btn-primary w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
                   Login
@@ -55,14 +78,6 @@ const LoginPage = () => {
                     Register Here
                   </a>
                 </p>
-              </div>
-              <div className="text-center mt-4">
-                <a
-                  className="text-blue-500 hover:underline"
-                  href="/forgot-password"
-                >
-                  Forgot Password?
-                </a>
               </div>
             </div>
           </div>

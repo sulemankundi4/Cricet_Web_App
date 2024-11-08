@@ -3,10 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 
 import Loader from './Admin/common/Loader';
 import PageTitle from './Admin/components/PageTitle';
-import SignIn from './Admin/pages/Authentication/SignIn';
-import SignUp from './Admin/pages/Authentication/SignUp';
 import Dashboard from './Admin/pages/Dashboard/Dashboard';
-import Tables from './Admin/pages/Tables';
 import DefaultLayout from './Admin/layout/DefaultLayout';
 import LandingPage from './UI/pages/landingPage';
 import RegisterPage from './UI/pages/registerPage';
@@ -18,20 +15,47 @@ import AllOther from './Admin/pages/AllOthers';
 import BatsmanDetails from './Admin/pages/BatsmanDetails';
 import BowlerDetails from './Admin/pages/BowlerDetails';
 import OtherDetails from './Admin/pages/OtherDetails';
+import ProtectedRoute from './UI/components/ProtectedRoute';
+import { isAuthenticated } from './UI/utils/Auth.js';
 
 function App() {
   const [loading, setLoading] = useState(true);
   const { pathname } = useLocation();
 
-  // Conditionally load the CSS based on the pathname
+  const [cssLoading, setCssLoading] = useState(false); // New state for CSS loading
+
   useEffect(() => {
+    const linkElement = document.createElement('link');
+    linkElement.rel = 'stylesheet';
+    linkElement.href = '../src/assets/style.css';
+
     if (
       pathname === '/' ||
       pathname === '/sign-up' ||
       pathname === '/sign-in'
     ) {
-      import('../src/assets/style.css');
+      // Show CSS loader until the CSS is fully loaded
+      setCssLoading(true);
+      linkElement.onload = () => {
+        setCssLoading(false); // Hide CSS loader when CSS is loaded
+      };
+      document.head.appendChild(linkElement);
+    } else {
+      // Remove the stylesheet if it exists in the head
+      const existingLink = document.head.querySelector(
+        "link[href='../src/assets/style.css']",
+      );
+      if (existingLink) {
+        document.head.removeChild(existingLink);
+      }
     }
+
+    // Cleanup function to remove the stylesheet when unmounting or switching routes
+    return () => {
+      if (document.head.contains(linkElement)) {
+        document.head.removeChild(linkElement);
+      }
+    };
   }, [pathname]);
 
   useEffect(() => {
@@ -42,6 +66,9 @@ function App() {
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
+  if (loading || cssLoading) {
+    return <Loader />;
+  }
   return loading ? (
     <Loader />
   ) : (
@@ -78,18 +105,20 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <>
+            <ProtectedRoute>
               <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
               <Dashboard />
-            </>
+            </ProtectedRoute>
           }
         />
         <Route
           path="/all-batsman"
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <AllBatsman />
+              <ProtectedRoute>
+                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <AllBatsman />
+              </ProtectedRoute>
             </>
           }
         />
@@ -97,8 +126,10 @@ function App() {
           path="/all-bowler"
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <AllBowler />
+              <ProtectedRoute>
+                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <AllBowler />
+              </ProtectedRoute>
             </>
           }
         />
@@ -106,8 +137,11 @@ function App() {
           path="/all-other"
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <AllOther />
+              {' '}
+              <ProtectedRoute>
+                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <AllOther />
+              </ProtectedRoute>
             </>
           }
         />
@@ -116,8 +150,10 @@ function App() {
           path="/batsman/:id"
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <BatsmanDetails />
+              <ProtectedRoute>
+                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <BatsmanDetails />
+              </ProtectedRoute>
             </>
           }
         />
@@ -125,8 +161,10 @@ function App() {
           path="/bowler/:id"
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <BowlerDetails />
+              <ProtectedRoute>
+                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <BowlerDetails />
+              </ProtectedRoute>
             </>
           }
         />
@@ -134,8 +172,10 @@ function App() {
           path="/other/:id"
           element={
             <>
-              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
-              <OtherDetails />
+              <ProtectedRoute>
+                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <OtherDetails />
+              </ProtectedRoute>
             </>
           }
         />

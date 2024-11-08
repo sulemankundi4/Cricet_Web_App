@@ -1,5 +1,5 @@
 const express = require("express");
-const { createBatsman, uploadFiles: uploadBatsmanFiles, getAllBatsmen, getAllBatsmans, verifyBatsman, getStats, getBatsmanDetails } = require("../controllers/batsman");
+const { createBatsman, uploadFiles: uploadBatsmanFiles, getAllBatsmen, getAllBatsmans, verifyBatsman, adminLogin, getStats, getBatsmanDetails } = require("../controllers/batsman");
 const { createBowler, uploadFiles: uploadBowlerFiles, getAllBowlers, verifyBowler, getBowlerDetails } = require("../controllers/bowler");
 const { createOther, uploadFiles: uploadOtherFiles, getAllOthers, verifyOther, getOthersDetails } = require("../controllers/other");
 
@@ -19,6 +19,8 @@ router.get("/other/all", getAllOthers);
 router.post("/other/new", uploadOtherFiles, createOther);
 router.put("/other/verify/:id", verifyOther);
 router.get("/other/details/:id", getOthersDetails);
+
+router.post("/admin/login", adminLogin);
 
 router.get("/stats", getStats);
 
