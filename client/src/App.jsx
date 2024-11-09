@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-
 import Loader from './Admin/common/Loader';
 import PageTitle from './Admin/components/PageTitle';
 import Dashboard from './Admin/pages/Dashboard/Dashboard';
@@ -18,10 +17,17 @@ import OtherDetails from './Admin/pages/OtherDetails';
 import ProtectedRoute from './UI/components/ProtectedRoute';
 import { isAuthenticated } from './UI/utils/Auth.js';
 import AllPlayers from './UI/pages/allPlayers';
-
 import BatsmanDetailsUI from './UI/pages/batsmanDetails';
 import BowlerDetailsUI from './UI/pages/bowlerDetails';
 import OtherDetailsUI from './UI/pages/otherDetails';
+import Events from './Admin/pages/Events/Events';
+import CreateEvent from './Admin/pages/Events/CreateEvent';
+import EventDetails from './Admin/pages/Events/EventDetails';
+import EditEvent from './Admin/pages/Events/EditEvent';
+
+import Partners from './Admin/pages/Partners/Partners';
+import AddPartner from './Admin/pages/Partners/CreatePartner';
+import EditPartner from './Admin/pages/Partners/EditPartner';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -104,6 +110,75 @@ function App() {
             <>
               <PageTitle title="ALL Stars" />
               <AllPlayers />
+            </>
+          }
+        />
+
+        <Route
+          path="/events"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <Events />
+            </>
+          }
+        />
+
+        <Route
+          path="/events/add"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <CreateEvent />
+            </>
+          }
+        />
+
+        <Route
+          path="/event/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <EventDetails />
+            </>
+          }
+        />
+
+        <Route
+          path="/event/edit/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <EditEvent />
+            </>
+          }
+        />
+
+        <Route
+          path="/partners"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <Partners />
+            </>
+          }
+        />
+
+        <Route
+          path="/add-partner"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <AddPartner />
+            </>
+          }
+        />
+        <Route
+          path="/partner/edit/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <EditPartner />
             </>
           }
         />
