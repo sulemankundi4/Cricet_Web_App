@@ -26,6 +26,7 @@ const bowlerSchema = new mongoose.Schema({
   feeSubmission: { type: String, required: true },
   picture: { type: String, required: true },
   accountStatus: { type: Boolean, default: false },
+  isFeatured: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("Bowler", bowlerSchema);

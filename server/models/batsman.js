@@ -25,6 +25,7 @@ const batsmanSchema = new mongoose.Schema({
   feeSubmission: { type: String, required: true },
   picture: { type: String, required: true },
   accountStatus: { type: Boolean, default: false },
+  isFeatured: { type: Boolean, default: false },
 });
 
-module.exports = mongoose.model("Batsman", batsmanSchema);
+module.exports = mongoose.models.Batsman || mongoose.model("Batsman", batsmanSchema);
