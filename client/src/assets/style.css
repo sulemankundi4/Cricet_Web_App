@@ -12163,7 +12163,7 @@ ol.breadcrumb .breadcrumb-item a {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#53d57f",endColorstr="#d6f589",GradientType=1);
 }
 .text-gr {
-  background: -webkit-linear-gradient(#53d57f, #d6f589);
+  background: #d4d29a;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -15524,7 +15524,7 @@ section.blog2-sec .single-entry2 .entry-media {
 }
 .about-sec .counter-wrap .counter-card .text-gr {
   font-family: Teko, sans-serif;
-  color: #030523;
+  color: #d4d29a;
   font-weight: 700;
   line-height: 1;
   margin-bottom: 0;

@@ -1,7 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaEye } from 'react-icons/fa';
+import { FaEye, FaStar, FaTrash } from 'react-icons/fa';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import axios from 'axios';
 
 const TableThree = ({ data }) => {
   const navigate = useNavigate();
@@ -13,6 +15,42 @@ const TableThree = ({ data }) => {
       navigate(`/bowler/${id}`);
     } else {
       navigate(`/other/${id}`);
+    }
+  };
+
+  const handleToggleFeatured = async (id, type) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/api/cricket/feature/${type}/${id}`,
+      );
+
+      if (response.data.success) {
+        toast.success('Profile updated successfully');
+        window.location.reload();
+      } else {
+        toast.error('Error updating profile');
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+      toast.error('Error updating profile');
+    }
+  };
+
+  const handleDelete = async (id, type) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/cricket/delete/${type}/${id}`,
+      );
+
+      if (response.data.success) {
+        toast.success('Profile deleted successfully');
+        window.location.reload();
+      } else {
+        toast.error('Error deleting profile');
+      }
+    } catch (error) {
+      console.error('Error deleting profile:', error);
+      toast.error('Error deleting profile');
     }
   };
 
@@ -40,7 +78,7 @@ const TableThree = ({ data }) => {
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                 Account Status
               </th>
-              <th className="min-w-[50px] py-4 px-4 font-medium text-black dark:text-white">
+              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
                 Actions
               </th>
             </tr>
@@ -48,7 +86,7 @@ const TableThree = ({ data }) => {
           <tbody>
             {data.map((batsman, key) => (
               <tr key={key}>
-                <td className="border-b border-[#eee] py-5 px-4 pl-9 dark:border-strokedark xl:pl-11">
+                <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark xl:pl-11">
                   <h5 className="font-medium text-black dark:text-white">
                     {batsman.firstName}
                   </h5>
@@ -88,6 +126,42 @@ const TableThree = ({ data }) => {
                   >
                     <FaEye size={25} />
                   </button>
+
+                  <button
+                    className={`${
+                      batsman.isFeatured ? 'text-yellow-500' : 'text-gray-400'
+                    } ml-3`}
+                    onClick={() =>
+                      handleToggleFeatured(
+                        batsman._id,
+                        location.pathname.includes('batsman')
+                          ? 'batsman'
+                          : location.pathname.includes('bowler')
+                          ? 'bowler'
+                          : 'other',
+                      )
+                    }
+                  >
+                    <FaStar size={25} />
+                  </button>
+
+                  {batsman.accountStatus && (
+                    <button
+                      className="text-red-500 ml-2 hover:text-red-700"
+                      onClick={() =>
+                        handleDelete(
+                          batsman._id,
+                          location.pathname.includes('batsman')
+                            ? 'batsman'
+                            : location.pathname.includes('bowler')
+                            ? 'bowler'
+                            : 'other',
+                        )
+                      }
+                    >
+                      <FaTrash size={25} />
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}

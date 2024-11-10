@@ -11,7 +11,9 @@ const Partners = () => {
   useEffect(() => {
     const fetchPartners = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/partners');
+        const response = await axios.get(
+          'http://localhost:5000/api/cricket/partners/all',
+        );
         if (response.data.success) {
           setPartners(response.data.data);
         } else {
@@ -41,7 +43,7 @@ const Partners = () => {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/partners/${id}`,
+        `http://localhost:5000/api/cricket/partners/${id}`,
       );
 
       if (response.data.success) {
@@ -69,7 +71,7 @@ const Partners = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 ">
+        <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
           {partners.map((partner) => (
             <div
               key={partner._id}
@@ -88,16 +90,16 @@ const Partners = () => {
                   className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
                   onClick={() => handleViewDetails(partner._id)}
                 >
-                  View Details
+                  Details
                 </button>
                 <button
-                  className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
                   onClick={() => handleEdit(partner._id)}
                 >
                   Edit
                 </button>
                 <button
-                  className="px-6 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none"
+                  className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none"
                   onClick={() => handleDelete(partner._id)}
                 >
                   Delete

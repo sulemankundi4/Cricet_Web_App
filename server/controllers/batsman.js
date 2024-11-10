@@ -147,6 +147,17 @@ const adminLogin = tryCatch(async (req, res, next) => {
   res.status(200).json({ success: true, message: "Admin logged in successfully" });
 });
 
+const getAllFeaturedPlayers = tryCatch(async (req, res, next) => {
+  let featuredPlayers = [];
+  const batsmen = await Batsman.find({ isFeatured: true });
+  const bowlers = await Bowler.find({ isFeatured: true });
+  const others = await Other.find({ isFeatured: true });
+
+  featuredPlayers = [...batsmen, ...bowlers, ...others];
+
+  res.status(200).json({ success: true, data: featuredPlayers });
+});
+
 module.exports = {
   createBatsman,
   uploadFiles,
@@ -155,4 +166,5 @@ module.exports = {
   getBatsmanDetails,
   verifyBatsman,
   adminLogin,
+  getAllFeaturedPlayers,
 };

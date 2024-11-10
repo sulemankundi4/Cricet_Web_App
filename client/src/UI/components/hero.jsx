@@ -15,7 +15,9 @@ const Hero = () => {
                 <h1 className="text-info text-uppercase">
                   Practice with a purpose play with a passion
                 </h1>
-                <button className="btn btn-gr">Start Practice Today</button>
+                <button className="bg-[#EBE9A1] text-black rounded-full px-6 py-3 hover:bg-[#d4d29a] focus:outline-none transition duration-300">
+                  Start Practice Today
+                </button>
               </div>
             </div>
           </div>

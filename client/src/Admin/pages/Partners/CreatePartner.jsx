@@ -30,7 +30,7 @@ const AddPartner = () => {
 
     try {
       const response = await axios.post(
-        'http://localhost:5000/api/partners',
+        'http://localhost:5000/api/cricket/partners/new',
         data,
         {
           headers: {

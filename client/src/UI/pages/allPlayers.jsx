@@ -77,12 +77,12 @@ const AllPlayers = () => {
     <>
       <Navbar />
       <div className="container mx-auto px-4 py-10">
-        <h2 className="text-2xl font-bold mb-6">All Players</h2>
+        <h2 className="text-2xl text-black font-bold mb-6">All Players</h2>
 
         <section className="team2-sec bg-white">
           <div className="container mx-auto">
             <div className="text-center pb-8">
-              <p className="text-3xl  text-green-600 font-semibold">Batsman</p>
+              <p className="text-3xl  text-black font-semibold">Batsman</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {batsmen.map((batsman, index) => (
@@ -102,7 +102,7 @@ const AllPlayers = () => {
                   </h3>
                   <p className="text-gray-600">{batsman.cricketExpertise}</p>
                   <button
-                    className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
+                    className="mt-4 px-6 py-2 bg-[#D4D29A] text-black rounded-md hover:bg-[#e2e09d] focus:outline-none"
                     onClick={() => handleViewDetails('batsman', batsman._id)}
                   >
                     View Details
@@ -116,7 +116,7 @@ const AllPlayers = () => {
         <section className="team2-sec bg-white mt-10">
           <div className="container mx-auto">
             <div className="text-center pb-8">
-              <p className="text-3xl text-green-600 font-semibold">Bowlers</p>
+              <p className="text-3xl text-black font-semibold">Bowlers</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {bowlers.map((bowler, index) => (
@@ -126,7 +126,7 @@ const AllPlayers = () => {
                 >
                   <div className="team-img mb-4">
                     <img
-                      className="w-full h-auto rounded-lg"
+                      className="w-full h-50 rounded-lg"
                       src={`http://localhost:5000/${bowler.picture}`}
                       alt="Team"
                     />
@@ -136,7 +136,7 @@ const AllPlayers = () => {
                   </h3>
                   <p className="text-gray-600">{bowler.cricketExpertise}</p>
                   <button
-                    className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
+                    className="mt-4 px-6 py-2 bg-[#D4D29A] text-black rounded-md hover:bg-[#e2e09d]focus:outline-none"
                     onClick={() => handleViewDetails('bowler', bowler._id)}
                   >
                     View Details
@@ -150,7 +150,7 @@ const AllPlayers = () => {
         <section className="team2-sec bg-white mt-10">
           <div className="container mx-auto">
             <div className="text-center pb-8">
-              <p className="text-3xl text-green-600 font-semibold">Others</p>
+              <p className="text-3xl text-black font-semibold">Others</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {others.map((other, index) => (
@@ -170,7 +170,7 @@ const AllPlayers = () => {
                   </h3>
                   <p className="text-gray-600">{other.Role}</p>
                   <button
-                    className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none"
+                    className="mt-4 px-6 py-2 bg-[#D4D29A] text-black rounded-md hover:bg-[#e2e09d] focus:outline-none"
                     onClick={() => handleViewDetails('other', other._id)}
                   >
                     View Details

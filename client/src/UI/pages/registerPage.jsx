@@ -615,6 +615,18 @@ const RegisterPage = () => {
                   className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </div>
+
+              <div className="mt-6 mb-4 ">
+                <p className="text-red-500 font-semibold">
+                  *Please Transfer Rs.5000/- On Either Of The Accounts:
+                </p>
+                <p className="text-red-500">
+                  JS Bank: PK07JSBL9015000001039026
+                </p>
+                <p className="text-red-500">Easypaisa: 03325075638</p>
+              </div>
+              <div></div>
+
               <div>
                 <label className="block text-gray-700">
                   Upload Fee Submission:
@@ -637,18 +649,10 @@ const RegisterPage = () => {
               </div>
             </div>
 
-            <button className="btn btn-primary w-full mt-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
+            <button className="btn btn-primary w-full mt-6 py-3 bg-[#EBE9A1] text-white rounded-lg hover:bg-[#e8e69a] transition duration-300">
               Register
             </button>
           </form>
-          <div className="login-message text-center mt-6">
-            <p className="text-gray-600">
-              Already a member?{' '}
-              <Link to="/sign-in" className="text-blue-500 hover:underline">
-                Login Here
-              </Link>
-            </p>
-          </div>
         </div>
       </div>
     </section>

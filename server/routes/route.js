@@ -1,5 +1,5 @@
 const express = require("express");
-const { createBatsman, uploadFiles: uploadBatsmanFiles, getAllBatsmen, getAllBatsmans, verifyBatsman, adminLogin, getStats, getBatsmanDetails } = require("../controllers/batsman");
+const { createBatsman, uploadFiles: uploadBatsmanFiles, getAllBatsmen, getAllBatsmans, verifyBatsman, adminLogin, getStats, getBatsmanDetails, getAllFeaturedPlayers } = require("../controllers/batsman");
 const { createBowler, uploadFiles: uploadBowlerFiles, getAllBowlers, verifyBowler, getBowlerDetails } = require("../controllers/bowler");
 const { createOther, uploadFiles: uploadOtherFiles, getAllOthers, verifyOther, getOthersDetails } = require("../controllers/other");
 const { toggleFeaturedStatus, deleteItem, createEvent, getAllEvents, uploadFiles, getEventDetails, updateEvent, deleteEvent } = require("../controllers/adminController");
@@ -28,6 +28,9 @@ router.get("/stats", getStats);
 // ADMIN STUFF
 router.put("/feature/:type/:id", toggleFeaturedStatus);
 router.delete("/delete/:type/:id", deleteItem); // Add this route
+
+// Featured Players
+router.get("/featured/all", getAllFeaturedPlayers);
 
 // EVENT
 router.post("/events/new", uploadFiles, createEvent);

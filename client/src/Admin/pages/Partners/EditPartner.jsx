@@ -18,7 +18,7 @@ const EditPartner = () => {
     const fetchPartnerDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/partners/${id}`,
+          `http://localhost:5000/api/cricket/partners/${id}`,
         );
         if (response.data.success) {
           const partner = response.data.data;
@@ -58,7 +58,7 @@ const EditPartner = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/partners/${id}`,
+        `http://localhost:5000/api/cricket/partners/${id}`,
         data,
         {
           headers: {

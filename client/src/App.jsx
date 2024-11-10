@@ -24,10 +24,13 @@ import Events from './Admin/pages/Events/Events';
 import CreateEvent from './Admin/pages/Events/CreateEvent';
 import EventDetails from './Admin/pages/Events/EventDetails';
 import EditEvent from './Admin/pages/Events/EditEvent';
-
+import PartnerDetails from './Admin/pages/Partners/PartnerDetails';
 import Partners from './Admin/pages/Partners/Partners';
 import AddPartner from './Admin/pages/Partners/CreatePartner';
 import EditPartner from './Admin/pages/Partners/EditPartner';
+import AllEvents from './UI/pages/allEvents';
+import EventDetailsUI from './UI/pages/eventDetail';
+import PartnersUI from './UI/pages/partners';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -43,6 +46,11 @@ function App() {
     if (
       pathname === '/' ||
       pathname === '/sign-up' ||
+      // pathname === '/all-partners' ||
+      // pathname === '/all-players' ||
+      // pathname === '/all-events' ||
+      // /^\/batsman\/ui\/[a-zA-Z0-9]+$/.test(pathname) ||
+      // pathname.startsWith('/batsman/ui/') ||
       pathname === '/sign-in'
     ) {
       // Show CSS loader until the CSS is fully loaded
@@ -113,82 +121,39 @@ function App() {
             </>
           }
         />
-
         <Route
-          path="/events"
+          path="/all-events"
           element={
             <>
               <PageTitle title="ALL Stars" />
-              <Events />
-            </>
-          }
-        />
-
-        <Route
-          path="/events/add"
-          element={
-            <>
-              <PageTitle title="ALL Stars" />
-              <CreateEvent />
-            </>
-          }
-        />
-
-        <Route
-          path="/event/:id"
-          element={
-            <>
-              <PageTitle title="ALL Stars" />
-              <EventDetails />
-            </>
-          }
-        />
-
-        <Route
-          path="/event/edit/:id"
-          element={
-            <>
-              <PageTitle title="ALL Stars" />
-              <EditEvent />
-            </>
-          }
-        />
-
-        <Route
-          path="/partners"
-          element={
-            <>
-              <PageTitle title="ALL Stars" />
-              <Partners />
-            </>
-          }
-        />
-
-        <Route
-          path="/add-partner"
-          element={
-            <>
-              <PageTitle title="ALL Stars" />
-              <AddPartner />
+              <AllEvents />
             </>
           }
         />
         <Route
-          path="/partner/edit/:id"
+          path="/event/details/:id"
           element={
             <>
               <PageTitle title="ALL Stars" />
-              <EditPartner />
+              <EventDetailsUI />
             </>
           }
         />
-
         <Route
           path="/batsman/ui/:id"
           element={
             <>
               <PageTitle title="ALL Stars" />
               <BatsmanDetailsUI />
+            </>
+          }
+        />
+        <Route
+          path="/all-partners"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <PartnersUI />
             </>
           }
         />
@@ -202,7 +167,6 @@ function App() {
             </>
           }
         />
-
         <Route
           path="/other/ui/:id"
           element={
@@ -212,8 +176,7 @@ function App() {
             </>
           }
         />
-
-        {/* Add the new route */}
+        {/* Add the new route ////////////////////////////////////////////////////////////////*/}
         <Route
           path="/sign-in"
           element={
@@ -296,6 +259,78 @@ function App() {
                 <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
                 <OtherDetails />
               </ProtectedRoute>
+            </>
+          }
+        />
+        <Route
+          path="/events"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <Events />
+            </>
+          }
+        />
+        <Route
+          path="/events/add"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <CreateEvent />
+            </>
+          }
+        />
+        <Route
+          path="/event/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <EventDetails />
+            </>
+          }
+        />
+        <Route
+          path="/event/edit/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <EditEvent />
+            </>
+          }
+        />
+        <Route
+          path="/partners"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <Partners />
+            </>
+          }
+        />
+        <Route
+          path="/add-partner"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <AddPartner />
+            </>
+          }
+        />
+        <Route
+          path="/partner/edit/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <EditPartner />
+            </>
+          }
+        />
+        <Route
+          path="/partner/:id"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <PartnerDetails />
             </>
           }
         />

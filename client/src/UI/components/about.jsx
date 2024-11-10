@@ -4,7 +4,7 @@ import batterImg from '../../assets/images/batter.jpg';
 const About = () => {
   return (
     <>
-      <section class="about-sec w-[94%] mx-auto">
+      <section class="about-sec w-[94%] mt-18 mx-auto">
         <div class="container">
           <div class="row align-items-center">
             <div class="col-lg-6 order-2 order-lg-1">
@@ -34,7 +34,10 @@ const About = () => {
                     Make your competitive juices overcome your excuses
                   </li>
                 </ul>
-                <a href="#" class="btn btn-gr">
+                <a
+                  href="#"
+                  className="bg-[#EBE9A1] text-black rounded-full px-6 py-3 hover:bg-[#d4d29a] focus:outline-none transition duration-300"
+                >
                   Learn More us
                 </a>
               </div>
