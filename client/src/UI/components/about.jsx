@@ -1,62 +1,55 @@
 import React from 'react';
 import { FaRegCheckCircle } from 'react-icons/fa';
 import batterImg from '../../assets/images/batter.jpg';
+
 const About = () => {
   return (
     <>
-      <section class="about-sec w-[94%] mt-18 mx-auto">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-6 order-2 order-lg-1">
-              <div class="about-txt">
-                <p class="lead text-success">Know About Us</p>
-                <h2 class="sec-title line-left green">
-                  Keep moving forward that’s how winning
+      <section className="about-sec w-[94%] mt-18 mx-auto">
+        <div className="container">
+          <div className="row align-items-center">
+            <div className="col-lg-6 order-2 order-lg-1">
+              <div className="about-txt">
+                <p className="text-2xl font-extrabold text-success">
+                  Know About Us
+                </p>
+                <h2 className="line-left green text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
+                  Where Talent Meets Opportunity
                 </h2>
                 <p>
-                  It’s not about how hard you hit, it’s about how hard you get
-                  hit. Make your competitive juices overcome your excuses. The
-                  price of greatness is responsibility. Champions are made when
-                  no one is watching. Get the Cricket Habit
+                  At All Star Cricket Management we help cricketers achieve
+                  their goals. We offer services like player management,
+                  coaching, talent scouting, career guidance, sponsorships, and
+                  league contracts. Our experts use data to improve player
+                  performance and boost their online presence through social
+                  media and website design. We work with top cricket
+                  organizations to create opportunities for our clients. Our
+                  mission is to support cricketers in reaching their full
+                  potential, while doing business with integrity and passion.
                 </p>
-
-                <ul className="my-5 space-y-2">
-                  <li className="flex items-center">
-                    <FaRegCheckCircle className="text-green-500 text-xl mr-2" />{' '}
-                    Winners never quit and quitters never win
-                  </li>
-                  <li className="flex items-center">
-                    <FaRegCheckCircle className="text-green-500 text-xl mr-2" />{' '}
-                    No one is a failure until they stop trying
-                  </li>
-                  <li className="flex items-center">
-                    <FaRegCheckCircle className="text-green-500 text-xl mr-2" />{' '}
-                    Make your competitive juices overcome your excuses
-                  </li>
-                </ul>
-                <a
-                  href="#"
-                  className="bg-[#EBE9A1] text-black rounded-full px-6 py-3 hover:bg-[#d4d29a] focus:outline-none transition duration-300"
-                >
-                  Learn More us
-                </a>
               </div>
             </div>
-            <div class="col-lg-6 ps-lg-5 order-1 order-lg-2 mb-5 mb-lg-0 col-sm-10">
-              <div class="about-img position-relative text-center">
-                <img class="img-fluid" src={batterImg} alt="" />
-                <div class="d-sm-flex justify-content-between counter-wrap">
-                  <div class="counter-card bg-dark p-4">
-                    <div class="text-gr">
+            <div className="col-lg-6 ps-lg-5 order-1 order-lg-2 mb-5 mb-lg-0 col-sm-10">
+              <div className="about-img position-relative text-center">
+                <img
+                  className="img-fluid rounded-lg shadow-lg"
+                  src={batterImg}
+                  alt="Batter"
+                />
+                <div className="d-sm-flex justify-content-between counter-wrap mt-4">
+                  <div className="counter-card bg-dark p-2 text-center rounded-lg shadow-lg">
+                    <div className="text-gr text-2xl font-bold">
                       <span>10</span>K
                     </div>
-                    <p>Years of Experience Recorded</p>
+                    <p className="text-white">Years of Experience Recorded</p>
                   </div>
-                  <div class="counter-card bg-dark p-4">
-                    <div class="text-gr">
+                  <div className="counter-card bg-dark p-2 text-center rounded-lg shadow-lg sm:mt-0">
+                    <div className="text-gr text-2xl font-bold">
                       <span>50</span>+
                     </div>
-                    <p>Skilled and Professional Trainers</p>
+                    <p className="text-white">
+                      Skilled and Professional Trainers
+                    </p>
                   </div>
                 </div>
               </div>

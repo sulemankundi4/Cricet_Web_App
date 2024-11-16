@@ -31,6 +31,7 @@ import EditPartner from './Admin/pages/Partners/EditPartner';
 import AllEvents from './UI/pages/allEvents';
 import EventDetailsUI from './UI/pages/eventDetail';
 import PartnersUI from './UI/pages/partners';
+import AboutUs from './UI/pages/aboutUs';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -113,6 +114,15 @@ function App() {
           }
         />
         <Route
+          path="/about-us"
+          element={
+            <>
+              <PageTitle title="ALL Stars" />
+              <AboutUs />
+            </>
+          }
+        />
+        <Route
           path="/all-players"
           element={
             <>
@@ -190,7 +200,7 @@ function App() {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="ALL Stars" />
               <Dashboard />
             </ProtectedRoute>
           }
@@ -200,7 +210,7 @@ function App() {
           element={
             <>
               <ProtectedRoute>
-                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <PageTitle title="ALL Stars" />
                 <AllBatsman />
               </ProtectedRoute>
             </>
@@ -211,7 +221,7 @@ function App() {
           element={
             <>
               <ProtectedRoute>
-                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <PageTitle title="ALL Stars" />
                 <AllBowler />
               </ProtectedRoute>
             </>
@@ -223,7 +233,7 @@ function App() {
             <>
               {' '}
               <ProtectedRoute>
-                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <PageTitle title="ALL Stars" />
                 <AllOther />
               </ProtectedRoute>
             </>
@@ -234,7 +244,7 @@ function App() {
           element={
             <>
               <ProtectedRoute>
-                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <PageTitle title="ALL Stars" />
                 <BatsmanDetails />
               </ProtectedRoute>
             </>
@@ -245,7 +255,7 @@ function App() {
           element={
             <>
               <ProtectedRoute>
-                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <PageTitle title="ALL Stars" />
                 <BowlerDetails />
               </ProtectedRoute>
             </>
@@ -256,7 +266,7 @@ function App() {
           element={
             <>
               <ProtectedRoute>
-                <PageTitle title="eCommerce Dashboard | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+                <PageTitle title="ALL Stars" />
                 <OtherDetails />
               </ProtectedRoute>
             </>

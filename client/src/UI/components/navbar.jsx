@@ -53,7 +53,7 @@ const Navbar = () => {
           className={`w-full md:block md:w-auto ${isOpen ? 'block' : 'hidden'}`}
           id="navbar-solid-bg"
         >
-          <ul className="flex flex-col font-medium rounded-lg bg-gray-800 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-900 md:dark:bg-transparent dark:border-gray-700">
+          <ul className="flex flex-col items-center font-medium rounded-lg bg-gray-800 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-900 md:dark:bg-transparent dark:border-gray-700">
             <li>
               <Link
                 to="/"
@@ -68,7 +68,7 @@ const Navbar = () => {
                 to="/all-players"
                 className="block py-2 px-3 md:p-0 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0"
               >
-                Our Profiles
+                Our Talent
               </Link>
             </li>
             <li>
@@ -87,8 +87,15 @@ const Navbar = () => {
                 Our Events
               </Link>
             </li>
-
-            {isAuthenticated() ? (
+            <li>
+              <Link
+                to="/about-us"
+                className="block py-2 px-3 md:p-0 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  "
+              >
+                About us
+              </Link>
+            </li>
+            {isAuthenticated() && (
               <li>
                 <Link
                   to="/dashboard"
@@ -97,17 +104,16 @@ const Navbar = () => {
                   Dashboard
                 </Link>
               </li>
-            ) : (
-              <li>
-                <Link
-                  to="/sign-in"
-                  className="block py-2 px-3 md:p-0 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0"
-                >
-                  Login
-                </Link>
-              </li>
             )}
 
+            <li>
+              <a
+                href="mailto:connect@allstarcm.pk"
+                className="block py-2 px-3 md:p-0 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0  "
+              >
+                Contact Us
+              </a>
+            </li>
             {isAuthenticated() ? (
               <li className="nav-item mt-2 lg:mt-0">
                 <Link to="/dashboard" className="text-white">

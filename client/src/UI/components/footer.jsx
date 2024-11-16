@@ -6,6 +6,7 @@ import {
   FaLinkedinIn,
 } from 'react-icons/fa';
 import Logo from '../../assets/images/main-logo.png'; // Adjust the path to your logo
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -13,14 +14,14 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
-            <img src={Logo} alt="Logo" className="h-30 w-30" />
+            <img src={Logo} alt="Logo" className="h-30 w-40" />
           </div>
           <div className="text-center md:text-left mb-6 md:mb-0">
             <p className="text-xl font-semibold">About Us</p>
             <p className="text-base">
-              We are a leading company in providing the best quality products
-              and services. Our mission is to deliver excellence and value to
-              our customers.
+              At All Star Cricket Management we help cricketers achieve their
+              goals. We offer services like player management, coaching, talent
+              scouting, career guidance, sponsorships, and league contracts.
             </p>
           </div>
           <div className="text-center md:text-right">
@@ -43,7 +44,15 @@ const Footer = () => {
         </div>
         <div className="mt-6  text-center text-base">
           <p className="mb-0">
-            &copy; {new Date().getFullYear()} Your Company. All rights reserved.
+            &copy; {new Date().getFullYear()} All Star . All rights reserved.
+            <li>
+              <Link
+                to="/sign-in"
+                className="block py-2 px-3 md:p-0 text-gray-300 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0"
+              >
+                Login
+              </Link>
+            </li>
           </p>
         </div>
       </div>

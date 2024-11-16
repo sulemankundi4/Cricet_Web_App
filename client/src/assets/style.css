@@ -8102,10 +8102,10 @@ fieldset:disabled .btn {
   padding-right: 0.5rem !important;
   padding-left: 0.5rem !important;
 }
-.px-3 {
+/* .px-3 {
   padding-right: 1rem !important;
   padding-left: 1rem !important;
-}
+} */
 .px-4 {
   padding-right: 1.5rem !important;
   padding-left: 1.5rem !important;
@@ -13718,7 +13718,7 @@ section.promo-sec .breadcrumb .breadcrumb-item.active {
   .cricket-banner .slide-bar .box-item span,
   .cricket-banner h1,
   .slide-bar .box-item .cricket-banner span {
-    font-size: 90px;
+    font-size: 70px;
   }
 }
 @media (min-width: 992px) and (max-width: 1199.98px) {
@@ -13745,7 +13745,7 @@ section.promo-sec .breadcrumb .breadcrumb-item.active {
   .cricket-banner .slide-bar .box-item span,
   .cricket-banner h1,
   .slide-bar .box-item .cricket-banner span {
-    font-size: 52px;
+    font-size: 30px;
   }
 }
 .banner-gallery {
